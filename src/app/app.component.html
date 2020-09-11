@@ -1,4 +1,7 @@
-<app-ligne [ligne]="ligne"></app-ligne>
+
+<div *ngFor="let ligne of lignes">
+  <app-ligne [ligne]="ligne"></app-ligne>
+</div>
 <p> 
   {{key}}
 </p>
