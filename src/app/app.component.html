@@ -2,9 +2,6 @@
 <div *ngFor="let ligne of lignes">
   <app-ligne [number]="ligne"></app-ligne>
 </div>
-<p> 
-  {{key}}
-</p>
 
 <app-start-screen *ngIf="!started"></app-start-screen>
 <app-timer [time]="counter"></app-timer>
