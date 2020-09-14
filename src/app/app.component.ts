@@ -9,27 +9,23 @@ export class AppComponent implements OnInit {
   public lignes: number[] = [];
 
   private readonly nbLignes = 100;
+  private readonly keys = ['u', 'i', 'o', 'p'];
+  private index = 0;
 
   public ngOnInit(): void {
     for (let i = 0; i < this.nbLignes; i++) {
-      this.lignes.push(Math.floor(Math.random() * 4) + 1 );
+      this.lignes.push(Math.floor(Math.random() * 4));
     }
   }
 
   @HostListener("document:keypress", ["$event"])
   handleKeyboardEvent(event: KeyboardEvent) {
     this.key = event.key;
-    let index = 0;
-    if (this.key === 'u') {
-      index = 1;
-    } else if (this.key === 'i') {
-      index = 2;
-    } else if (this.key === 'o') {
-      index = 3;
-    } else if (this.key === 'p') {
-      index = 4;
+    let hit = this.keys.indexOf(this.key);
+    if (hit > -1 && hit === this.lignes[0]) {
+      hit = 1;
+      this.lignes.shift();
     }
-    
   }
 
 }
