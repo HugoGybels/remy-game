@@ -9,9 +9,11 @@ export class AppComponent implements OnInit {
   public lignes: number[] = [];
   public started = false;
   public failed = false;
+  public counter = 0;
 
   private readonly nbLignes = 100;
   private readonly keys = ['u', 'i', 'o', 'p'];
+  private timerRef;
 
   public ngOnInit(): void {
     for (let i = 0; i < this.nbLignes; i++) {
@@ -24,10 +26,13 @@ export class AppComponent implements OnInit {
     this.key = event.key;
     let hit = this.keys.indexOf(this.key);
     if (hit > -1 && hit === this.lignes[0]) {
-      
       this.lignes.shift();
       if(this.started === false) {
         this.started = true;
+        const startTime = Date.now();
+        this.timerRef = setInterval(() => {
+          this.counter = Date.now() - startTime;
+        });
       }
     }
   }
