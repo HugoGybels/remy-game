@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Ligne } from '../model/ligne.model';
 
 @Component({
   selector: 'app-ligne',
@@ -9,12 +8,11 @@ import { Ligne } from '../model/ligne.model';
 export class LigneComponent implements OnInit {
 
   @Input()
-  public ligne: Ligne;
+  public number: number;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.ligne);
   }
 
 }

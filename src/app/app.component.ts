@@ -1,7 +1,4 @@
 import { OnInit, Component, HostListener } from "@angular/core";
-import { Touche } from "./model/touche.model";
-import { Ligne } from "./model/ligne.model";
-
 @Component({
   selector: "my-app",
   templateUrl: "./app.component.html",
@@ -9,14 +6,14 @@ import { Ligne } from "./model/ligne.model";
 })
 export class AppComponent implements OnInit {
   public key: string;
-  public lignes: Ligne[] = [];
+  public lignes: number[] = [];
+
+  private readonly nbLignes = 100;
 
   public ngOnInit(): void {
-    this.lignes.push(this.createLigne(1));
-    this.lignes.push(this.createLigne(2));
-    this.lignes.push(this.createLigne(4));
-    this.lignes.push(this.createLigne(3));
-
+    for (let i = 0; i < this.nbLignes; i++) {
+      this.lignes.push(Math.floor(Math.random() * 4) + 1 );
+    }
   }
 
   @HostListener("document:keypress", ["$event"])
@@ -35,15 +32,4 @@ export class AppComponent implements OnInit {
     
   }
 
-  private createLigne(idLigne: number): Ligne {
-    return new Ligne({
-      id: idLigne,
-      touches: [
-        new Touche({ id: 1 * idLigne, selected: idLigne % 4 === 1 }),
-        new Touche({ id: 2 * idLigne, selected: idLigne % 4 === 2 }),
-        new Touche({ id: 3 * idLigne, selected: idLigne % 4 === 3 }),
-        new Touche({ id: 4 * idLigne, selected: idLigne % 4 === 4 })
-      ]
-    });
-  }
 }
