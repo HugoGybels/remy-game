@@ -7,10 +7,11 @@ import { OnInit, Component, HostListener } from "@angular/core";
 export class AppComponent implements OnInit {
   public key: string;
   public lignes: number[] = [];
+  public started = false;
+  public failed = false;
 
   private readonly nbLignes = 100;
   private readonly keys = ['u', 'i', 'o', 'p'];
-  private index = 0;
 
   public ngOnInit(): void {
     for (let i = 0; i < this.nbLignes; i++) {
@@ -23,8 +24,11 @@ export class AppComponent implements OnInit {
     this.key = event.key;
     let hit = this.keys.indexOf(this.key);
     if (hit > -1 && hit === this.lignes[0]) {
-      hit = 1;
+      
       this.lignes.shift();
+      if(this.started === false) {
+        this.started = true;
+      }
     }
   }
 

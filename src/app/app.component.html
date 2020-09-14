@@ -6,4 +6,5 @@
   {{key}}
 </p>
 
-<app-start-screen></app-start-screen>
+<app-start-screen *ngIf="!started"></app-start-screen>
+<app-timer></app-timer>

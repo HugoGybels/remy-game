@@ -8,5 +8,9 @@
   opacity: .6;
   display: flex;
   align-items: center;
-   
+  justify-content: center;
+
+  p {
+    font-size: 3rem;
+  }
 }
