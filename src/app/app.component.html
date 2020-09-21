@@ -3,5 +3,5 @@
   <app-ligne [number]="ligne"></app-ligne>
 </div>
 
-<app-start-screen *ngIf="!started"></app-start-screen>
+<app-start-screen *ngIf="state === stateEnum.SPLASH_SCREEN"></app-start-screen>
 <app-timer [time]="counter"></app-timer>
