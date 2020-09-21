@@ -4,4 +4,8 @@
 </div>
 
 <app-start-screen *ngIf="state === stateEnum.SPLASH_SCREEN"></app-start-screen>
+<app-end-screen *ngIf="state === stateEnum.FAILED || state === stateEnum.ENDED"
+                [status]="state"
+                [time]="counter">
+</app-end-screen>
 <app-timer [time]="counter"></app-timer>
