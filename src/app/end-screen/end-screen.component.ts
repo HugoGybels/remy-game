@@ -14,6 +14,8 @@ export class EndScreenComponent implements OnInit {
   @Input()
   public time: number;
 
+  public stateEnum = StateEnum;
+
   constructor() { }
 
   ngOnInit() {

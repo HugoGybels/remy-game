@@ -1,5 +1,9 @@
-<p>
-Ready ?
+<div class="failed" *ngIf="status === stateEnum.FAILED">
+FAILED !
+</div>
 
-{{status}} - {{time | timer}}
-</p>
+<div class="victory" *ngIf="status === stateEnum.ENDED">
+    <p>Victory !</p>
+    <p>{{time | timer}}</p>
+</div>
+

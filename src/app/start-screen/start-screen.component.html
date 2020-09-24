@@ -1,3 +1,5 @@
-<p>
+<input *ngIf="!hasName()" type="text" [(ngModel)]="name" (keyup.enter)="saveName()" />
+
+<p *ngIf="hasName()">
 Ready ?
 </p>

@@ -1,4 +1,5 @@
 export enum StateEnum {
+  SETTING_NAME = 'SETTING_NAME',
   SPLASH_SCREEN = 'SPLASH_SCREEN',
   STARTED = 'STARTED',
   FAILED = 'FAILED',

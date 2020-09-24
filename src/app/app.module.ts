@@ -8,9 +8,11 @@ import { StartScreenComponent } from "./start-screen/start-screen.component";
 import { EndScreenComponent } from "./end-screen/end-screen.component";
 import { TimerComponent } from "./timer/timer.component";
 import { TimerPipe } from "./timer.pipe";
+import {ScoreService} from "./services/score.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule],
   declarations: [
     AppComponent,
     LigneComponent,
@@ -18,6 +20,9 @@ import { TimerPipe } from "./timer.pipe";
     TimerComponent,
     TimerPipe,
     EndScreenComponent
+  ],
+  providers: [
+    ScoreService,
   ],
   bootstrap: [AppComponent]
 })

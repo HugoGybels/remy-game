@@ -10,7 +10,15 @@
   align-items: center;
   justify-content: center;
 
-  p {
+  div {
     font-size: 3rem;
+
+    &.failed {
+      color: red;
+    }
+
+    &.victory {
+      color: green;
+    }
   }
 }
