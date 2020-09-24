@@ -9,10 +9,11 @@ import {ScoreService} from "./services/score.service";
 })
 export class AppComponent implements OnInit {
   public key: string;
-  public lignes: number[] = [];
+  public lignes: number[];
   public stateEnum = StateEnum;
   public state = StateEnum.SETTING_NAME;
   public counter = 0;
+  public sent: boolean = false;
 
   private readonly nbLignes = 10;
   private readonly keys = ["u", "i", "o", "p"];
@@ -22,10 +23,8 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    for (let i = 0; i < this.nbLignes; i++) {
-      this.lignes.push(Math.floor(Math.random() * 4));
-    }
-  } 
+    this.generateLines();
+  }
 
   @HostListener("document:keypress", ["$event"])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -46,23 +45,36 @@ export class AppComponent implements OnInit {
     if (this.state === StateEnum.STARTED) {
       let hit = this.keys.indexOf(this.key);
       if (hit > -1) {
-        if (hit === this.lignes[0]) { 
+        if (hit === this.lignes[0]) {
           this.lignes.shift();
         } else {
           this.state = StateEnum.FAILED;
           this.end();
-          this.scoreService.saveScore(localStorage.getItem('name'), this.counter, this.state).subscribe();
         }
       }
       if (this.lignes.length === 0) {
         this.state = StateEnum.ENDED;
         this.end();
-        this.scoreService.saveScore(localStorage.getItem('name'), this.counter, this.state).subscribe();
       }
     }
   }
 
+  public restart() {
+    this.state = StateEnum.SPLASH_SCREEN;
+    this.counter = 0;
+    this.sent = false;
+    this.generateLines();
+  }
+
   private end() {
     clearInterval(this.timerRef);
+    this.scoreService.saveScore(localStorage.getItem('name'), this.counter, this.state).subscribe( () => this.sent = true);
+  }
+
+  private generateLines() {
+    this.lignes = [];
+    for (let i = 0; i < this.nbLignes; i++) {
+      this.lignes.push(Math.floor(Math.random() * 4));
+    }
   }
 }

@@ -3,12 +3,14 @@
 </div>
 
 <app-start-screen *ngIf="state === stateEnum.SPLASH_SCREEN || state === stateEnum.SETTING_NAME"
-                  (nameSetted)="state = stateEnum.SPLASH_SCREEN">
-</app-start-screen>
+                  (nameSetted)="state = stateEnum.SPLASH_SCREEN"
+></app-start-screen>
 
 <app-end-screen *ngIf="state === stateEnum.FAILED || state === stateEnum.ENDED"
                 [status]="state"
-                [time]="counter">
-</app-end-screen>
+                [time]="counter"
+                [sent]="sent"
+                (resrart)="restart()"
+></app-end-screen>
 
 <app-timer [time]="counter"></app-timer>

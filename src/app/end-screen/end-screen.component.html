@@ -7,3 +7,5 @@ FAILED !
     <p>{{time | timer}}</p>
 </div>
 
+
+<p class="retry" *ngIf="sent" (click)="resrart.emit()">Try again ?</p>
